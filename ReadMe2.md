@@ -29,3 +29,7 @@ For a project like **Momento**, the smartest way to start is by laying down the 
 
 👉 So, the **first thing to start with is Phase 0 (Foundations)**:  
 Set up your repo, Docker Compose, and skeleton apps for Spring Boot and React. Once you can run `docker compose up` and see both services responding locally, you’ll have a strong base to build features on.
+
+
+-----------Ved here--------------------------
+added extra lines 
