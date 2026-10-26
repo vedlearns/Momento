@@ -1,4 +1,4 @@
-export type Movie = {
+export type Moment = {
   id: string
   title: string
   eyebrow?: string
