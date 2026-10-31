@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: momento-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/momento
+    username: postgres
+    password: ${POSTGRES_PASS}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true
+
+aws:
+  region: eu-north-1
+  s3:
+    bucket: momento-mediabucket

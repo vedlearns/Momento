@@ -1,0 +1,5 @@
+# Use a dedicated test database or Testcontainers for integration tests.
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
