@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 /**
  * Table: album_media (V5). Join table between albums and media items, with

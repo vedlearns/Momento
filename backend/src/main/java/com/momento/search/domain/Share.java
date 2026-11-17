@@ -16,12 +16,11 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name="shares")
+@Table(name = "shares")
 public class Share {
 
     @Id
@@ -45,7 +44,6 @@ public class Share {
     @Column(name = "share_type", nullable = false, length = 20, updatable = false)
     private ShareType shareType;
 
- 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private SharePermission permission = SharePermission.VIEW;
@@ -55,6 +53,7 @@ public class Share {
     private String tokenHash;
 
     /** NULL = never expires. */
+
     @Column(name = "expires_at")
     private Instant expiresAt;
 
@@ -65,7 +64,6 @@ public class Share {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-
     private Share(UUID ownerId, ShareType shareType, SharePermission permission, Instant expiresAt) {
         this.ownerId = ownerId;
         this.shareType = shareType;
@@ -74,24 +72,27 @@ public class Share {
     }
 
     public void updatePermission(SharePermission permission) {
-    if (permission == null) {
-        throw new IllegalArgumentException("Permission cannot be null");
+        if (permission == null) {
+            throw new IllegalArgumentException("Permission cannot be null");
+        }
+
+        this.permission = permission;
     }
 
-    this.permission = permission;
-}
+    public void updateExpiration(Instant expiresAt) {
+        if (expiresAt != null && !expiresAt.isAfter(Instant.now())) {
+            throw new IllegalArgumentException("Expiration must be in the future");
+        }
 
-public void updateExpiration(Instant expiresAt) {
-    if (expiresAt != null && !expiresAt.isAfter(Instant.now())) {
-        throw new IllegalArgumentException("Expiration must be in the future");
+        this.expiresAt = expiresAt;
     }
 
-    this.expiresAt = expiresAt;
-}
-
-    /** Share a media item or album (exactly one of the two ids non-null) with a registered user. */
+    /**
+     * Share a media item or album (exactly one of the two ids non-null) with a
+     * registered user.
+     */
     public static Share forUser(UUID ownerId, UUID recipientUserId, UUID mediaItemId, UUID albumId,
-                                SharePermission permission, Instant expiresAt) {
+            SharePermission permission, Instant expiresAt) {
         Share s = new Share(ownerId, ShareType.USER, permission, expiresAt);
         s.recipientUserId = recipientUserId;
         s.mediaItemId = mediaItemId;
@@ -99,9 +100,12 @@ public void updateExpiration(Instant expiresAt) {
         return s;
     }
 
-    /** Create a private link share. Pass the hash of the token, never the token itself. */
+    /**
+     * Create a private link share. Pass the hash of the token, never the token
+     * itself.
+     */
     public static Share forLink(UUID ownerId, UUID mediaItemId, UUID albumId,
-                                SharePermission permission, String tokenHash, Instant expiresAt) {
+            SharePermission permission, String tokenHash, Instant expiresAt) {
         Share s = new Share(ownerId, ShareType.LINK, permission, expiresAt);
         s.mediaItemId = mediaItemId;
         s.albumId = albumId;
@@ -122,5 +126,5 @@ public void updateExpiration(Instant expiresAt) {
     public boolean allowsDownload() {
         return permission == SharePermission.DOWNLOAD;
     }
-	
+
 }
