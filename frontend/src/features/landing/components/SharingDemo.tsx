@@ -4,7 +4,7 @@ import Reveal from '../../../shared/components/ui/Reveal';
 import { useToast } from '../../../shared/components/ui/Toast';
 import { useCopyToClipboard } from '../../../shared/hooks/useCopyToClipboard';
 import { DEMO_SHARE_URL, EXPIRY_OPTIONS, GRADIENTS, SHARING_SECTION } from '../data/content';
-import type { ShareExpiry, SharePermission } from '../types';
+import type { ShareExpiry, SharePermission } from '../../../shared/types/types';
 
 /** Chip showing one thing a visitor can (✓) or cannot (✕) do. */
 function PermissionChip({ label, allowed }: { label: string; allowed: boolean }) {

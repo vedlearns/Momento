@@ -1,8 +1,8 @@
 import Reveal from '../../../shared/components/ui/Reveal';
 import { CONTINUE_WATCHING, LIBRARY_SECTION, TOP_ALBUMS } from '../data/content';
-import type { Moment } from '../types';
-import ContentRail from './ContentRail';
-import MomentCard from './MomentCard';
+import type { Moment } from '../../../shared/types/types';
+import ContentRail from '../../../shared/components/common/ContentRail';
+import MomentCard from '../../../shared/components/common/MomentCard';
 
 interface LibraryPreviewProps {
   savedIds: ReadonlySet<string>;

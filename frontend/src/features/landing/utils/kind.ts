@@ -1,5 +1,5 @@
 import { Film, Images, Image, type LucideIcon } from 'lucide-react';
-import type { MomentKind } from '../types';
+import type { MomentKind } from '../../../shared/types/types';
 
 /** Human-readable label for each kind of media. */
 export const KIND_LABEL: Record<MomentKind, string> = {

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Images, Play, X } from 'lucide-react';
-import { useEscapeKey } from '../../../shared/hooks/useEscapeKey';
-import { useLockBodyScroll } from '../../../shared/hooks/useLockBodyScroll';
-import type { Moment } from '../types';
-import { KIND_LABEL } from '../utils/kind';
+import { useEscapeKey } from '../../hooks/useEscapeKey';
+import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
+import type { Moment } from '../../types/types';
+import { KIND_LABEL } from '../../../features/landing/utils/kind';
 
 interface DetailModalProps {
   moment: Moment;

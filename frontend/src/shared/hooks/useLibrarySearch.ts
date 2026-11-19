@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import type { Moment } from '../types';
+import type { Moment } from '../types/types';
 
 /**
  * State + filtering for the top-bar search of the sample library.

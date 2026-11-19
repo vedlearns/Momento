@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import Reveal from '../../../shared/components/ui/Reveal';
 import { PLANS, PLANS_SECTION } from '../data/content';
-import type { PlanCta } from '../types';
+import type { PlanCta } from '../../../shared/types/types';
 
 /** The call-to-action under a plan: a router link for pages, a plain anchor for #sections. */
 function PlanButton({ cta, featured }: { cta: PlanCta; featured?: boolean }) {

@@ -20,7 +20,7 @@ import type {
   ShareExpiry,
   Stat,
   Step,
-} from '../types';
+} from '../../../shared/types/types';
 
 /* --------------------------------------------------------------------------
    Navigation  (order must match the order of the sections on the page)

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useEscapeKey } from '../../../shared/hooks/useEscapeKey';
 import { NAV_LINKS } from '../data/content';
-import type { LibrarySearch } from '../hooks/useLibrarySearch';
+import type { LibrarySearch } from '../../../shared/hooks/useLibrarySearch';
 import SearchBar from './SearchBar';
 
 interface NavbarProps {

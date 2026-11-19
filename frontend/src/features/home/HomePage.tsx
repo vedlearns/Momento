@@ -1,171 +1,92 @@
-import { useState } from "react";
-import type { Moment } from "../../shared/types/types";
-import { Check, Clapperboard, Info, Play} from "lucide-react";
-import {
-  catalogue,
-  continueWatching,
-  featured,
-  kidsAndFamily,
-  topTen,
-  trending,
-} from "./api/catalogue";
-import ContentRail from "./components/ContentRail";
-import Modal from "./components/Modal";
+import { useCallback, useMemo, useState } from 'react';
+import { ImagePlus } from 'lucide-react';
+import { useToast } from '../../shared/components/ui/Toast';
+import DetailModal from '../../shared/components/common/DetailModal';
+import ContentRail from '../../shared/components/common/ContentRail';
+import MomentCard from '../../shared/components/common/MomentCard';
+import SearchResults from '../../shared/components/common/SearchResults';
+import { useLibrarySearch } from '../../shared/hooks/useLibrarySearch';
+import type { Moment } from '../../shared/types/types';
+import HomeHero from './components/HomeHero';
+import HomeNavbar from './components/HomeNavbar';
+import StorageStrip from './components/StorageStrip';
+import UploadModal from './components/UploadModal';
+import { ALL_HOME_MOMENTS, FEATURED, RAILS, type HomeTab, type RailConfig } from './data/homeData';
 
+/**
+ * Signed-in home (route "/home"). Owns the page state – active tab, favourites, open card, upload
+ * dialog, search – and arranges: top bar → hero → storage strip → rails.
+ * Data comes from ./data/homeData.ts until the media/album APIs exist.
+ */
 export default function HomePage() {
-
-   // Stores the currently active navigation item.
-  const [activeNav, setActiveNav] = useState("Home");
-
-   // Stores the movies/series that the user has added to My List.
-  const [saved, setSaved] = useState<Moment[]>([]);
-  
-   // Stores the movie/series currently selected for details or playback.
+  const [tab, setTab] = useState<HomeTab>('all');
   const [selected, setSelected] = useState<Moment | null>(null);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [savedIds, setSavedIds] = useState<ReadonlySet<string>>(() => new Set());
+  const { showToast } = useToast();
+  const search = useLibrarySearch(ALL_HOME_MOMENTS);
+  const closeSearch = search.close;
 
- // Stores which modal should be displayed: details, play, or no modal.
-  const [modalMode, setModalMode] = useState<"details" | "play" | null>(null);
- 
-  // This makes it easy to check whether a particular item is saved.
-  const savedIds = saved.map((moment) => moment.id);
+  const openMoment = useCallback((m: Moment) => { closeSearch(); setSelected(m); }, [closeSearch]);
 
-  // Adds an item to My List if it isn't saved, or removes it if it is already saved.
-  const toggleSaved = (moment: Moment) =>
-    setSaved((current) =>
-      current.some((item) => item.id === moment.id)
-        ? current.filter((item) => item.id !== moment.id)
-        : [...current, moment],
-    );
+  const toggleSave = useCallback((m: Moment) => {
+    const willSave = !savedIds.has(m.id);
+    setSavedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(m.id)) next.delete(m.id); else next.add(m.id);
+      return next;
+    });
+    showToast(willSave ? `“${m.title}” added to favourites` : `“${m.title}” removed from favourites`);
+  }, [savedIds, showToast]);
 
-     // Selects a movie/series and opens its details modal.
-  const openDetails = (moment: Moment) => {
-    setSelected(moment);
-    setModalMode("details");
-  };
-
-   // Selects a movie/series and opens the playback modal.
-  const playMoment = (moment: Moment) => {
-    setSelected(moment);
-    setModalMode("play");
-  };
-
-  // Builds the hero banner's background using gradient overlays and the featured backdrop image.
-  const heroStyle = {
-    backgroundImage: `linear-gradient(90deg, rgba(8,9,12,.97) 0%, rgba(8,9,12,.72) 35%, rgba(8,9,12,.12) 76%), linear-gradient(0deg, #08090c 0%, transparent 46%), url("${featured.backdrop}")`,
-  };
+  // Rails for the current tab; a "Your favourites" rail appears once something is hearted.
+  const rails = useMemo<RailConfig[]>(() => {
+    const favourites = ALL_HOME_MOMENTS.filter((m) => savedIds.has(m.id));
+    const all = favourites.length ? [{ id: 'favourites', title: 'Your favourites', items: favourites }, ...RAILS] : RAILS;
+    return all
+      .map((rail) => ({ ...rail, items: tab === 'all' ? rail.items : rail.items.filter((m) => m.kind === tab) }))
+      .filter((rail) => rail.items.length > 0);
+  }, [tab, savedIds]);
 
   return (
     <div className="app-shell">
-      <main id="home">
-        {/* Top Hero Banner */}
-        {activeNav === "Home" && (
-          <section className="hero" style={heroStyle}>
-            <div className="hero-content">
-              <span className="hero-kicker">
-                <Clapperboard size={13} /> {featured.eyebrow}
-              </span>
-              <h1>
-                NIGHT
-                <br />
-                SHIFT<span className="hero-period">.</span>
-              </h1>
-              <div className="hero-meta">
-                <span className="match-score">{featured.match}% Match</span>
-                <span>{featured.year}</span>
-                <span className="maturity">{featured.rating}</span>
-                <span>{featured.seasons}</span>
-                <span>4K UHD</span>
-              </div>
-              <p className="hero-description">{featured.description}</p>
-              <div className="hero-actions">
-                <button
-                  className="button button-primary"
-                  onClick={() => playMoment(featured)}
-                >
-                  <Play size={17} fill="currentColor" /> Play
-                </button>
-                <button
-                  className="button button-secondary"
-                  onClick={() => openDetails(featured)}
-                >
-                  <Info size={18} /> More Info
-                </button>
-                <button
-                  className={`hero-list-button ${savedIds.includes(featured.id) ? "is-saved" : ""}`}
-                  onClick={() => toggleSaved(featured)}
-                >
-                  {savedIds.includes(featured.id) ? <Check size={17} /> : "+"}{" "}
-                  <span>
-                    {savedIds.includes(featured.id) ? "In My List" : "My List"}
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div className="hero-bottom">
-              <div className="hero-rating">
-                <span className="sound-wave">♫</span>
-                <span>Original Series</span>
-              </div>
-              <div className="hero-vertical-rating">16+</div>
-            </div>
-            <div className="hero-gradient-orb" />
-          </section>
-        )}
+      <div className="ambient-glow" aria-hidden="true" />
+      <HomeNavbar tab={tab} onTab={setTab} search={search} onUpload={() => setUploadOpen(true)} />
 
-        {/* Horizontal content section*/}
+      {search.query.trim() !== '' && <SearchResults query={search.query} results={search.results} onSelect={openMoment} />}
+
+      <main className="home-main">
+        {tab === 'all' && <HomeHero moment={FEATURED} onOpen={openMoment} />}
+        {tab === 'all' && <StorageStrip onUpload={() => setUploadOpen(true)} />}
+
         <div className="rails-wrap">
-          <ContentRail
-            title="Made for your moments"
-            moments={trending}
-            onSelect={openDetails}
-            onPlay={playMoment}
-            savedIds={savedIds}
-            onToggleSaved={toggleSaved}
-          />
-          <ContentRail
-            title="Continue watching"
-            moments={continueWatching}
-            onSelect={openDetails}
-            onPlay={playMoment}
-            savedIds={savedIds}
-            onToggleSaved={toggleSaved}
-            progress
-          />
-          <ContentRail
-            title="Top 10 in India today"
-            moments={topTen}
-            onSelect={openDetails}
-            onPlay={playMoment}
-            savedIds={savedIds}
-            onToggleSaved={toggleSaved}
-          />
-          <ContentRail
-            title="Put the Kids to Bed & Binge"
-            moments={kidsAndFamily}
-            onSelect={openDetails}
-            onPlay={playMoment}
-            savedIds={savedIds}
-            onToggleSaved={toggleSaved}
-          />
-          <ContentRail
-            title="Because you watched Night Shift"
-            moments={catalogue.slice(0, 6)}
-            onSelect={openDetails}
-            onPlay={playMoment}
-            savedIds={savedIds}
-            onToggleSaved={toggleSaved}
-          />
+          {rails.map((rail) => (
+            <ContentRail key={rail.id} title={rail.title} ranked={rail.ranked}>
+              {rail.items.map((m, index) => (
+                <MomentCard key={m.id} moment={m} rank={rail.ranked ? index + 1 : undefined} saved={savedIds.has(m.id)} onOpen={openMoment} onToggleSave={toggleSave} />
+              ))}
+            </ContentRail>
+          ))}
+
+          {rails.length === 0 && (
+            <div className="empty-collection">
+              <span><ImagePlus size={26} aria-hidden="true" /></span>
+              <h2>Nothing here yet</h2>
+              <p>Upload something and it will show up in this tab.</p>
+              <button type="button" className="button button-primary" onClick={() => setUploadOpen(true)}>Upload files</button>
+            </div>
+          )}
         </div>
       </main>
 
-       <Modal
-        moment={selected}
-        mode={modalMode}
-        onClose={() => setModalMode(null)}
-        onPlay={playMoment}
-        saved={selected ? savedIds.includes(selected.id) : false}
-        onToggleSaved={toggleSaved}
-      />
+      <footer className="site-footer">
+        <small>© {new Date().getFullYear()} Momento. Your library is private by default.</small>
+      </footer>
+
+      {selected && (
+        <DetailModal key={selected.id} moment={selected} saved={savedIds.has(selected.id)} onToggleSave={toggleSave} onClose={() => setSelected(null)} />
+      )}
+      {uploadOpen && <UploadModal onClose={() => setUploadOpen(false)} />}
     </div>
   );
 }

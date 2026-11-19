@@ -1,0 +1,45 @@
+/* home.css – extras for the signed-in home page. Loaded after landing.css; re-uses the same tokens. */
+
+/* Hero: a bit shorter than the landing hero, with a resume progress bar along the bottom. */
+.home-hero { min-height: clamp(380px, 38vw, 520px); border-radius: 0 0 18px 18px; }
+.home-hero .hero-content { width: min(620px, 70%); }
+.home-hero-progress { left: clamp(26px, 4vw, 64px); right: clamp(26px, 4vw, 64px); }
+.home-hero-progress .progress-track { width: 100%; border-radius: 3px; overflow: hidden; }
+@media (max-width: 560px) { .home-hero .hero-content { width: 100%; } .home-hero { min-height: 440px; } }
+
+/* Top bar */
+.home-upload span { display: inline; }
+@media (max-width: 560px) { .home-upload span { display: none; } .home-upload { padding: 0 10px; } }
+
+/* Greeting + storage strip */
+.home-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px 32px; margin: 22px var(--page-gutter) 0; padding: 20px 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.home-strip h2 { margin: 0 0 5px; font: 700 clamp(17px, 1.6vw, 21px) 'Manrope', sans-serif; letter-spacing: -.04em; }
+.home-strip p { margin: 0; color: var(--muted); font-size: 12px; }
+.storage { display: grid; gap: 8px; flex: 1; min-width: min(100%, 240px); max-width: 380px; }
+.storage-head { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; }
+.storage-head span { color: var(--muted); }
+.storage-bar { height: 6px; overflow: hidden; border-radius: 99px; background: #ffffff1c; }
+.storage-bar span { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width .8s ease; }
+.storage-link { justify-self: start; color: #ff8c9b; font-size: 11px; font-weight: 700; }
+.storage-link:hover { color: #fff; }
+
+.home-main { padding-bottom: 12px; }
+.home-main > .rails-wrap { margin-top: 10px; }
+
+/* Upload dialog */
+.upload-modal { width: min(540px, 100%); padding: 28px; }
+.upload-modal h2 { margin: 0 40px 6px 0; font: 800 24px 'Manrope', sans-serif; letter-spacing: -.04em; }
+.upload-sub { margin: 0 0 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.dropzone { display: grid; justify-items: center; gap: 8px; padding: 34px 20px; border: 1.5px dashed #ffffff33; border-radius: 14px; background: #ffffff05; color: #ff7a8b; text-align: center; cursor: pointer; transition: border-color .2s, background .2s; }
+.dropzone:hover, .dropzone.is-dragging, .dropzone:focus-within { border-color: var(--accent); background: #f22c4612; }
+.dropzone b { color: var(--text); font-size: 14px; }
+.dropzone small { color: var(--muted); font-size: 11px; }
+.upload-list { display: grid; gap: 10px; max-height: 220px; margin: 16px 0 0; padding: 0; overflow: auto; list-style: none; }
+.upload-list li { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--muted); }
+.upload-list li > div { display: grid; flex: 1; gap: 7px; min-width: 0; }
+.upload-list li > div > span { overflow: hidden; color: var(--text); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.upload-list .progress-track { overflow: hidden; border-radius: 3px; }
+.upload-list small { min-width: 30px; font-size: 11px; text-align: right; }
+.upload-done { flex: none; color: #58d6a3; }
+.upload-actions { margin: 22px 0 0; }
+.site-footer > small { display: block; }

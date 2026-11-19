@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
-import type { LibrarySearch } from '../hooks/useLibrarySearch';
+import type { LibrarySearch } from '../../../shared/hooks/useLibrarySearch';
 
 interface SearchBarProps {
   /** State object from useLibrarySearch(). */
