@@ -1,5 +1,4 @@
-import { PageLayout } from "../components/layouts/PageLayout";
-
+import { PageLayout } from "../app/layouts/PageLayout";
 function App() {
   return (
     <>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Moment } from "../types/types";
+import type { Moment } from "../../shared/types/types";
 import { Check, Clapperboard, Info, Play} from "lucide-react";
 import {
   catalogue,
@@ -8,9 +8,9 @@ import {
   kidsAndFamily,
   topTen,
   trending,
-} from "../data/catalogue";
-import ContentRail from "../components/contents/ContentRail";
-import Modal from "../components/contents/Modal";
+} from "./api/catalogue";
+import ContentRail from "./components/ContentRail";
+import Modal from "./components/Modal";
 
 export default function HomePage() {
 

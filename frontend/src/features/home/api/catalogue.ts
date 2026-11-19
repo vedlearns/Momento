@@ -1,4 +1,4 @@
-import type { Moment } from '../types/types'
+import type { Moment } from '../../../shared/types/types'
 
 const images = {
   night: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=85',

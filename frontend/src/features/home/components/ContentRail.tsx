@@ -3,7 +3,7 @@
 
 import { ChevronLeft, ChevronRight, Play, Plus } from "lucide-react";
 import { useRef } from "react";
-import type { Moment } from "../../types/types";
+import type { Moment } from "../../../shared/types/types";
 
 type Props = {
   title: string;
