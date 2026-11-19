@@ -2,7 +2,7 @@
 // a playback preview when someone clicks a moment in Momento.
 
 import { X } from "lucide-react";
-import type { Moment } from "../../types/types";
+import type { Moment } from "../../../shared/types/types";
 
 type Props = {
   moment: Moment | null;
