@@ -17,7 +17,7 @@
  */
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const MOCK_STORAGE_KEY = 'momento.waitlist.mock';
+const MOCK_STORAGE_KEY = 'momentostreaming.waitlist.mock';
 const MOCK_DELAY_MS = 700;
 
 export async function joinWaitlist(email: string): Promise<void> {

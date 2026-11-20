@@ -1,5 +1,5 @@
-import type { Moment } from '../types';
-import { KIND_LABEL } from '../utils/kind';
+import type { Moment } from '../../types/types';
+import { KIND_LABEL } from '../../../features/landing/utils/kind';
 
 interface SearchResultsProps {
   query: string;

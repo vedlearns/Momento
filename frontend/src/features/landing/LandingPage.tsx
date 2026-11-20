@@ -3,7 +3,7 @@ import BackToTop from '../../shared/components/ui/BackToTop';
 import ScrollProgress from '../../shared/components/ui/ScrollProgress';
 import { useToast } from '../../shared/components/ui/Toast';
 import { useScrollSpy } from '../../shared/hooks/useScrollSpy';
-import DetailModal from './components/DetailModal';
+import DetailModal from '../../shared/components/common/DetailModal';
 import Faq from './components/Faq';
 import Features from './components/Features';
 import FinalCta from './components/FinalCta';
@@ -13,12 +13,13 @@ import HowItWorks from './components/HowItWorks';
 import LibraryPreview from './components/LibraryPreview';
 import Navbar from './components/Navbar';
 import Plans from './components/Plans';
-import SearchResults from './components/SearchResults';
+import SearchResults from '../../shared/components/common/SearchResults';
 import SharingDemo from './components/SharingDemo';
 import StatsStrip from './components/StatsStrip';
 import { ALL_MOMENTS, HERO_MOMENT, SECTION_IDS } from './data/content';
-import { useLibrarySearch } from './hooks/useLibrarySearch';
-import type { Moment } from './types';
+import { useLibrarySearch } from '../../shared/hooks/useLibrarySearch';
+import type { Moment } from '../../shared/types/types';
+import Team from './components/Team';
 
 /**
  * The public landing page (route "/").
@@ -81,6 +82,7 @@ export default function LandingPage() {
         <SharingDemo />
         <Plans />
         <Faq />
+        <Team/>
         <FinalCta />
       </main>
 

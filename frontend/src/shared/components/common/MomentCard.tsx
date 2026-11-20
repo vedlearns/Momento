@@ -1,6 +1,6 @@
 import { Heart, Play } from 'lucide-react';
-import type { Moment } from '../types';
-import { KIND_ICON, KIND_LABEL } from '../utils/kind';
+import type { Moment } from '../../types/types';
+import { KIND_ICON, KIND_LABEL } from '../../../features/landing/utils/kind';
 
 interface MomentCardProps {
   moment: Moment;
