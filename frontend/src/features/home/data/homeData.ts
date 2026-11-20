@@ -37,7 +37,22 @@ export const RAILS: RailConfig[] = [
   { id: 'shared', title: 'Shared with you', items: SHARED_WITH_ME },
 ];
 
+// Create a Map to store unique Moment objects.
+//
+// string = The key will be a string (Moment ID).
+// Moment = The value will be a Moment object.
+//
+// Map automatically keeps keys unique.
+// If the same ID is added again, its previous value gets replaced.
 const unique = new Map<string, Moment>();
+// This line is doing two loops (one inside another) to collect all moments from every rail and store them in a Map without duplicate IDs.
 RAILS.forEach((rail) => rail.items.forEach((m) => unique.set(m.id, m)));
+// Get all Moment objects from the Map using values().
+//
+// The spread operator (...) converts those values into an array.
+//
+// Moment[] means this variable is an array of Moment objects.
+//
+// export allows us to use this array in other files.
 export const ALL_HOME_MOMENTS: Moment[] = [...unique.values()];
 export const FEATURED: Moment = CONTINUE_WATCHING[0];

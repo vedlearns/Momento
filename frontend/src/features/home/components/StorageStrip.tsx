@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Upload } from 'lucide-react';
-import { STORAGE, USER } from '../../../../../../momento-landing-home/momento-landing/src/features/home/data/homeData';
+import { STORAGE, USER } from '../data/homeData';
 
 /** Greeting + storage meter. The meter will later read the user's plan from the subscription module. */
 export default function StorageStrip({ onUpload }: { onUpload: () => void }) {

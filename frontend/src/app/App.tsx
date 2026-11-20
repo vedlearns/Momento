@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import { PageLayout } from "../app/layouts/PageLayout";
 import { ToastProvider } from "../shared/components/ui/Toast";
 import LandingPage from "../features/landing/LandingPage";
 import HomePage from "../features/home/HomePage";

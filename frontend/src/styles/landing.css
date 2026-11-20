@@ -230,3 +230,54 @@ html { scroll-padding-top: 92px; }
 .footer-links a { color: #a1a2ad; font-size: 11px; transition: color .2s; }
 .footer-links a:hover { color: #fff; }
 .floating-explore { cursor: pointer; }
+
+/* ---------- Team ---------- */
+.team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.team-grid > .reveal { display: flex; flex: 1 1 200px; max-width: 232px; min-width: 0; }
+
+.team-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* keeps content inside the card */
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  padding: 30px 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  text-align: center;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.team-card:hover, .team-card:focus-within { transform: translateY(-4px); border-color: #f22c4666; background: var(--surface-raised); }
+
+.team-avatar { display: grid; place-items: center; width: 96px; height: 96px; margin-bottom: 10px; overflow: hidden; border: 2px solid #ffffff22; border-radius: 28px 10px 28px 10px; box-shadow: 0 14px 34px #0007; }
+.team-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.team-avatar span { font: 800 38px 'Manrope', sans-serif; letter-spacing: -.05em; text-shadow: 0 2px 12px #0006; }
+
+.team-card h3 { max-width: 100%; margin: 0; font: 700 18px 'Manrope', sans-serif; letter-spacing: -.03em; overflow-wrap: anywhere; }
+.team-role { margin: 0; color: var(--muted); font-size: 12px; }
+
+.team-contact { display: flex; justify-content: center; width: 100%; min-width: 0; margin-top: 12px; }
+.team-contact-link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; min-width: 0; padding: 9px 10px;
+  border: 1px solid var(--line); border-radius: 99px;
+  color: #d6d6dd; font-size: 11px; font-weight: 600;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.team-contact-link span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.team-contact-link:hover { border-color: #f22c4688; background: #f22c4614; color: #fff; }
+.team-contact-link svg { flex: none; color: #ff7a8b; }
+
+/* Copy button floats in the card's top-right corner */
+.team-copy {
+  position: absolute; top: 10px; right: 10px;
+  display: grid; place-items: center; width: 30px; height: 30px;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: transparent; color: #a5a5af;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.team-copy:hover { border-color: #ffffff55; background: #ffffff0d; color: #fff; }

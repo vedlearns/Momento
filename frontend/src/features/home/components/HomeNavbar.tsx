@@ -52,7 +52,7 @@ export default function HomeNavbar({ tab, onTab, search, onUpload }: HomeNavbarP
 
       <Link to="/home" className="wordmark" onClick={() => pick('all')}>
         <span className="brand-symbol">M</span>
-        MOMENTO
+        MOMENTO ST.
       </Link>
 
       <nav id="home-nav" aria-label="Library" className={`main-nav${menuOpen ? ' nav-open' : ''}`}>

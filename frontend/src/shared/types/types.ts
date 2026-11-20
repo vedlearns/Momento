@@ -116,3 +116,19 @@ export interface Moment {
 /* ---- Sharing demo ---- */
 export type SharePermission = 'view' | 'download';
 export type ShareExpiry = '7d' | '30d' | 'never';
+
+/* ---- Team section ---- */
+export type ContactKind = 'email' | 'linkedin' | 'github' | 'phone';
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  /** Optional short line under the name, e.g. "Backend". Leave out to show nothing. */
+  role?: string;
+  /** Path to a photo in /public, e.g. "/team/vedank.jpg". Without it, an initial on a gradient is shown. */
+  photo?: string;
+  /** CSS background for the initial avatar (see GRADIENTS). */
+  gradient: string;
+  /** email → address, phone → number, linkedin/github → full https URL. */
+  contact: { kind: ContactKind; value: string };
+}

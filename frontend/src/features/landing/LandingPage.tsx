@@ -19,6 +19,7 @@ import StatsStrip from './components/StatsStrip';
 import { ALL_MOMENTS, HERO_MOMENT, SECTION_IDS } from './data/content';
 import { useLibrarySearch } from '../../shared/hooks/useLibrarySearch';
 import type { Moment } from '../../shared/types/types';
+import Team from './components/Team';
 
 /**
  * The public landing page (route "/").
@@ -81,6 +82,7 @@ export default function LandingPage() {
         <SharingDemo />
         <Plans />
         <Faq />
+        <Team/>
         <FinalCta />
       </main>
 

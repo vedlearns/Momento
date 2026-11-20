@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="site-footer">
       <a href="#top" className="footer-brand">
         <span className="brand-symbol">M</span>
-        MOMENTO
+        MOMENTO ST.
       </a>
       <p>{FOOTER.tagline}</p>
 
@@ -20,7 +20,7 @@ export default function Footer() {
         <a href="#top">Back to top ↑</a>
       </nav>
 
-      <small>© {new Date().getFullYear()} Momento. All rights reserved.</small>
+      <small>© {new Date().getFullYear()} MOMENTO ST. All rights reserved.</small>
     </footer>
   );
 }

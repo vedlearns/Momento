@@ -49,7 +49,7 @@ export default function Navbar({ activeSection, search }: NavbarProps) {
 
       <Link to="/" className="wordmark" onClick={handleLogoClick}>
         <span className="brand-symbol">M</span>
-        MOMENTO
+        MOMENTO ST.
       </Link>
 
       <nav id="primary-nav" aria-label="Primary" className={`main-nav${menuOpen ? ' nav-open' : ''}`}>

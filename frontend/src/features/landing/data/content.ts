@@ -20,6 +20,7 @@ import type {
   ShareExpiry,
   Stat,
   Step,
+  TeamMember,
 } from '../../../shared/types/types';
 
 /* --------------------------------------------------------------------------
@@ -66,7 +67,7 @@ export const HERO = {
   kicker: 'YOUR PRIVATE STREAMING LIBRARY',
   title: 'Your memories, beautifully kept',
   description:
-    'Momento is a private home for your photos and videos. Browse them like your own streaming service, organise them into albums and share only what you choose.',
+    'Momento St. is a private home for your photos and videos. Browse them like your own streaming service, organise them into albums and share only what you choose.',
   primaryCta: 'Create your free library',
   secondaryCta: 'Watch preview',
   tertiaryCta: 'See features',
@@ -251,7 +252,7 @@ export const FEATURES: Feature[] = [
   {
     icon: History,
     title: 'Pick up where you left off',
-    description: 'Momento remembers your playback position, so every video resumes instantly.',
+    description: 'Momento St. remembers your playback position, so every video resumes instantly.',
   },
   {
     icon: Share2,
@@ -306,8 +307,8 @@ export const SHARING_SECTION = {
   ],
 } as const;
 
-/** Fake link shown in the demo. Swap `momento.example` for your real domain. */
-export const DEMO_SHARE_URL = 'https://momento.example/s/k9Xf2aQ7pL';
+/** Fake link shown in the demo. Swap `momentostreaming.example` for your real domain. */
+export const DEMO_SHARE_URL = 'https://momentostreaming.example/s/k9Xf2aQ7pL';
 
 export const EXPIRY_OPTIONS: { value: ShareExpiry; label: string; summary: string }[] = [
   { value: '7d', label: '7 days', summary: 'Expires in 7 days' },
@@ -366,7 +367,7 @@ export const FAQ_SECTION = {
 export const FAQS: FaqItem[] = [
   {
     id: 'netflix',
-    question: 'Is Momento like Netflix?',
+    question: 'Is Momento St. like Netflix?',
     answer:
       'The browsing and viewing experience is inspired by it, but the library is yours. There are no shows or movies, only the photos and videos you upload.',
   },
@@ -392,7 +393,7 @@ export const FAQS: FaqItem[] = [
     id: 'availability',
     question: 'Is it available yet?',
     answer:
-      'Momento is under active development. Features are being released step by step, so what you see here is the direction, not the finished product.',
+      'Momento St. is under active development. Features are being released step by step, so what you see here is the direction, not the finished product.',
   },
 ];
 
@@ -401,7 +402,7 @@ export const FAQS: FaqItem[] = [
    -------------------------------------------------------------------------- */
 export const CTA = {
   title: 'Give your memories a proper home',
-  description: 'Get a single email when Momento opens its doors – no spam, ever.',
+  description: 'Get a single email when Momento St. opens its doors – no spam, ever.',
   alt: 'Want to look around first?',
   altLink: 'Create a free account',
 } as const;
@@ -412,3 +413,21 @@ export const CTA = {
 export const FOOTER = {
   tagline: 'Your memories, beautifully kept.',
 } as const;
+
+
+/* --------------------------------------------------------------------------
+   Team  – replace the example contacts and add `photo: '/team/<name>.jpg'` (file in /public/team)
+   -------------------------------------------------------------------------- */
+export const TEAM_SECTION = {
+  eyebrow: 'THE TEAM',
+  title: 'The five people behind Momento',
+  description: 'Have a question or an idea? Reach any of us directly.',
+} as const;
+
+export const TEAM: TeamMember[] = [
+  { id: 'vedank', name: 'Vedank', role: 'Project Lead & FullStack Developer',  photo: '/team/Vedank.jpeg', gradient: GRADIENTS.sunset, contact: { kind: 'email', value: 'vedankxb@gamil.com' } },
+  { id: 'shaurya', name: 'Shaurya',role: 'Lead Backend Developer',photo: '/team/Shaurya.PNG',  gradient: GRADIENTS.ocean, contact: { kind: 'email', value: 'Shauryakamal117@gmail.com' } },
+  { id: 'shreya', name: 'Shreya', role: 'Full Stack Developer', photo: '/team/Shreya.jpeg', gradient: GRADIENTS.rose, contact: { kind: 'email', value: 'Shreya7202@gmail.com' } },
+  { id: 'bhawesh', name: 'Bhawesh',role: 'Frontend Developer',photo: '/team/Bhawesh.jpeg', gradient: GRADIENTS.forest, contact: { kind: 'email', value: 'bhaweshpant67@gmail.com' } },
+  { id: 'saroj', name: 'Saroj', role: 'Full Stack Developer', photo: '/team/Saroj.jpeg', gradient: GRADIENTS.violet, contact: { kind: 'email', value: 'pandeysaroj663@gmail.com' } },
+];

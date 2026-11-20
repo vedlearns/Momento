@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type DragEvent } from 'react';
 import { CheckCircle2, FileVideo, ImageIcon, UploadCloud, X } from 'lucide-react';
-import { useToast } from '../../../../../../momento-landing-home/momento-landing/src/components/ui/Toast';
-import { useEscapeKey } from '../../../../../../momento-landing-home/momento-landing/src/hooks/useEscapeKey';
-import { useLockBodyScroll } from '../../../../../../momento-landing-home/momento-landing/src/hooks/useLockBodyScroll';
+import { useToast } from '../../../shared/components/ui/Toast';
+import { useEscapeKey } from '../../../shared/hooks/useEscapeKey';
+import { useLockBodyScroll } from '../../../shared/hooks/useLockBodyScroll';
 
 interface UploadItem { id: string; name: string; isVideo: boolean; progress: number }
 

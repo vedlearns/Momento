@@ -1,5 +1,5 @@
 import { Info, Play } from 'lucide-react';
-import type { Moment } from '../../../../../../momento-landing-home/momento-landing/src/features/landing/types';
+import type { Moment } from '../../../shared/types/types';
 
 interface HomeHeroProps {
   moment: Moment;
