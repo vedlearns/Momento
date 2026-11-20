@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: momento-backend
@@ -19,3 +18,16 @@ aws:
   region: eu-north-1
   s3:
     bucket: momento-mediabucket
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_ACCESS_EXPIRATION_MS:360000}
+    refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:2592000000}
+  social:
+    google:
+      client-ids: "${GOOGLE_WEB_CLIENT_ID:placeholder-web},${GOOGLE_ANDROID_CLIENT_ID:placeholder-android},${GOOGLE_IOS_CLIENT_ID:placeholder-ios}"
+    apple:
+      client-ids: "${APPLE_SERVICE_ID:placeholder-apple-web},${APPLE_BUNDLE_ID:placeholder-apple-ios}"
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}

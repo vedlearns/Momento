@@ -3,3 +3,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+app:
+  jwt:
+    secret: test-only-jwt-secret-with-at-least-32-bytes
+    expiration-ms: 360000
+    refresh-expiration-ms: 2592000000
